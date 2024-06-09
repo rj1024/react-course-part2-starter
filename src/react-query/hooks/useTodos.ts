@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-interface Todo {
+export interface Todo {
   id: number;
   title: string;
   userId: number;
@@ -11,7 +11,7 @@ interface Todo {
 const useTodos = () => {
   const fetchTodos = () => axios.get<Todo[]>("https://jsonplaceholder.typicode.com/todos").then((res) => res.data);
 
-  useQuery<Todo[], Error>({
+  return useQuery<Todo[], Error>({
     queryKey: ["todos"],
     queryFn: fetchTodos,
   });
